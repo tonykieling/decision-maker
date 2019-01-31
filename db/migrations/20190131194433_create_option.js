@@ -3,8 +3,8 @@ exports.up = function(knex, Promise) {
   return Promise.all([
     knex.schema.createTable('option', function(table){
       table.increments('id');
-      table.integer('label');
-      table.string('score');
+      table.string('label');
+      table.integer('score');
       table.integer('poll_id').unsigned().notNullable();
       table.foreign('poll_id').references('id').inTable('poll');
     })
