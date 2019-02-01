@@ -1,0 +1,40 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+h2.title{
+  border-bottom: solid;
+  text-align: center;
+}
+
+body {
+  color: black;
+  background-color: #6495ED;
+  font-family: 'Roboto Mono', monospace;
+}
+
+div.main {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  border: solid 10px;
+  position: absolute;
+  top: 30px; left: 30%;
+  text-align: center;
+  }
+
+  button.admin {
+  font-family: 'Roboto Mono', monospace;
+  border: solid 2px;
+  width: 230px;
+  height: 40px;
+  font-size: 110%;
+
+
+}

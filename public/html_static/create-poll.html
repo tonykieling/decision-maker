@@ -2,21 +2,85 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="create-poll.css" media="screen" />
+    <script type="text/javascript" src="/scripts/app.js"></script>
     <title>delphi - create poll</title>
   </head>
 
   <body>
-    <div class="describe">
-    <h2>How this works.</h2>
-    <button> DESCRIBE THAT POLL. </button>
-  </div>
+
    <div class="create">
     <h2>Make a Poll! </h2>
-    <button> MAKE THAT POLL. </button>
+
+      <div class="input">
+        <text class="description1"> Fill in the title, description and options for your poll.</text>
+        <text class="description2"> Fill in the email section to email the poll to your friends!</text>
+
+      <div class="title">
+        <h3>Title</h3>
+        <form method="POST" action="/poll">
+          <textarea name="title" placeholder="title"></textarea>
+        </form>
+      </div>
+
+      <div class="description">
+        <h3>Description</h3>
+        <form method="POST" action="/poll">
+          <textarea name="description" placeholder="description"></textarea>
+        </form>
+      </div>
+
+      <div class="options">
+        <h3>Options</h3>
+        <div class="options-table">
+          <table>
+          <tr>
+                  <input class="option1"type="text" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input class="option2"type="text" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input class="option3"type="text" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input class="option4"type="text" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input class="option5"type="text" style="width:150px"/>
+          </tr>
+          </table>
+        </div>
+      </div>
+
+      <div class="emails">
+        <h3>Emails</h3>
+        <div class="email-table">
+
+              <tr>
+                  <input class="email1" type="text" style="width:150px"/>
+              </tr>
+              <tr>
+                  <input class="email2"type="text" style="width:150px"/>
+              </tr>
+              <tr>
+                  <input class="email3"type="text" style="width:150px"/>
+              </tr>
+              <tr>
+                  <input class="email4"type="text" style="width:150px"/>
+              </tr>
+              <tr>
+                  <input class="email5"type="text" style="width:150px"/>
+              </tr>
+
+        </table>
+      </div>
+      </div>
+
+      </div>
+
+
   </div>
-   <div class="email">
-    <h2>EMAIL.</h2>
-    <button> EMAIL THAT POLL.</button>
-  </div>
+    <button class="create"> CREATE </button>
+
   </body>
 </html>
