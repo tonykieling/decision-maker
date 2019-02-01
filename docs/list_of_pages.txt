@@ -1,0 +1,9 @@
+Pages
+1- welcome
+2- register
+3- login
+4- admin
+5- create_poll
+6- results
+7- vote
+8- thankyou

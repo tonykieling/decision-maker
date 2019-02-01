@@ -36,6 +36,7 @@ router.post("/register", (req, res) => {
     res.send("User already exists");
     return;
   }
+
   const randomUserId = generateRandomString();    // calling the function to generate a random set of characteres which is gonna be used as user's id
   const hashedPassword = bcrypt.hashSync(req.body.password, 10);
   users[randomUserId] = {
@@ -47,3 +48,26 @@ router.post("/register", (req, res) => {
   req.session.user_id = randomUserId;
   res.redirect("/urls");
 });
+
+// routes to login
+router.get('/login')
+- router.post('/login')
+
+//routes to give access to the admin
+router.get('/admin') // list of poll for the current admin
+router.get('/create_poll')
+- router.post('/create_poll')
+router.get('/result_page')
+router.get('/poll_vote')
+- router.post('/poll_vote')
+router.get('/thankyou')
+
+Pages
+1- welcome
+2- register
+3- login
+4- admin
+5- create_poll
+6- results
+7- vote
+8- thankyou
