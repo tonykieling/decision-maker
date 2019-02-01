@@ -8,7 +8,7 @@ exports.up = function(knex, Promise) {
       table.timestamp('created_at').defaultTo(knex.fn.now());
       table.date('dt_expire');
       table.integer('admin_id').unsigned().notNullable();
-      table.foreign('admin_id').references('id').inTable('admin');
+      table.foreign('admin_id').references('id').inTable('admin').onDelete('CASCADE');
     })
   ])
 };
