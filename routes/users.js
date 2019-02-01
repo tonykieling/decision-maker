@@ -15,6 +15,12 @@ module.exports = (knex) => {
     });
   });
 
+
+
   // console.log("### router: ", router);
   return router;
 }
+
+//we wont need this file (I think).
+// It just show the admin doing a search.
+// It will be usefull this knex structure for being used in other situations
