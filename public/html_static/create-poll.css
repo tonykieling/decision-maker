@@ -41,7 +41,14 @@ div.title {
   float: center;
 }
 div.description {
- display: inline-block;
+
+}
+textarea {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 110%;
+  float: center;
+
+
 }
 
 div.options-table {
@@ -49,6 +56,7 @@ div.options-table {
   flex-direction: column;
   align-items: center;
   font-family: 'Roboto Mono', monospace;
+  font-size: 110%;
 }
 
 div.email-table {
@@ -56,15 +64,29 @@ div.email-table {
   flex-direction: column;
   align-items: center;
   font-family: 'Roboto Mono', monospace;
+  font-size: 110%;
 }
 
 
 input {
   display: left;
+  font-family: 'Roboto Mono', monospace;
+  font-size: 110%;
+
 }
 
 div.emails {
-  display: left;
+float: center;
+
+}
+
+div.options {
+  float: left;
+  margin-right: 50px;
+  display: inline-block;
+   position: relative;
+  left: 30%;
+
 }
 
 body {
@@ -80,5 +102,5 @@ button.create {
   height: 50px;
   font-size: 110%;
   position: absolute;
-  bottom: 5px; left: 46%;
+  bottom: 100px; left: 46%;
 }
