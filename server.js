@@ -143,11 +143,32 @@ app.post("/create_poll", (req, res) => {
 
   // console.log("POST cretae_poll!!!!!!");
   // console.log("req.body NEWWWW: ", req.body);
+  console.log("req.body: ", req.body);
+  var temp = req.body;
+  let countOfOptions = 0;
+  let tt;
+  //console.log("test ",typeof temp);
+  for(var key in temp){
+      if(key.startsWith("op")){
+        countOfOptions = key.slice(-1);
+        tt = key.charAt(key.length - 1);
+      }
+  }
+
+  //generating the dynamic array
+  var optionsArr = [];
+  for(var i = 1; i<=tt; i++){
+    var x = "option"+i;
+    optionsArr.push(req.body[x]);
+  }
+  console.log("Options Array",optionsArr);
+  console.log(countOfOptions, tt);
+
   recordPoll(req.body, req.session.admin_id)
     .then((poll_id) => {
-      let promiseArray = req.body.option;
-      // console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
-      return Promise.all(promiseArray.map((option) => {
+      //let promiseArray = req.body.option;
+      //console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
+      return Promise.all(optionsArr.map((option) => {
         console.log("option: ", option);
         return knex('option').insert({
           label: option,

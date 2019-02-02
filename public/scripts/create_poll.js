@@ -1,14 +1,22 @@
 
 $(function() {
   // let count = 0;
+  var count = 1;
+
 
   // $(".add_options").on('click', function(event) {
 
   $('.add').click(function() {
-      $('.block:last').before('<div class="block"><input type="text" /><span class="remove">Remove Option</span></div>');
+      count = count+1;
+      $('.block:last').before('<div class="block"><input type="text" name=option'+count+' /><span class="remove">Remove Option</span></div>');
+
+      $("#countoptions").val(count);
+
   });
   $('.optionBox').on('click','.remove',function() {
      $(this).parent().remove();
+     count = count -1;
+     $("#countoptions").val(count);
   });
 
     // count += 1;

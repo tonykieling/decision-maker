@@ -6,6 +6,7 @@
   </head>
 
   <body>
+      <form action="/create_poll" method="POST">
 
     <div class="create">
       <h2>Make a Poll! </h2>
@@ -33,12 +34,13 @@
 
             <div class="optionBox">
               <div class="block">
-                  <input type="text" /> <span class="remove">Remove Option</span>
+                  <input type="text" name="option1" /> <span class="remove">Remove Option</span>
               </div>
               <div class="block">
                   <span class="add">Add Option</span>
               </div>
           </div>
+          <input type="hidden" id="countoptions" value="1"/>
 
 
               <!-- <input name="option[]" id="option" type="text" style="width:250px"/>
@@ -74,8 +76,8 @@
           </div>
         </div>
 
-      <form action="/create_poll" method="POST">
-        <button class="create"> CREATE </button>
+
+        <button class="create" type="submit"> CREATE </button>
       </form>
     </div>
   </body>
