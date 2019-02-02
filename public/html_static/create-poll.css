@@ -10,7 +10,6 @@ h2 {
   text-align: center;
 }
 
-
 div.create {
   width: 1000px;
   height: 700px;
@@ -45,13 +44,10 @@ div.description {
  display: inline-block;
 }
 
-
-
 div.options-table {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -59,7 +55,6 @@ div.email-table {
   display: flex;
   flex-direction: column;
   align-items: center;
-
   font-family: 'Roboto Mono', monospace;
 }
 
@@ -70,12 +65,7 @@ input {
 
 div.emails {
   display: left;
-
 }
-
-
-
-
 
 body {
   color: black;
@@ -89,6 +79,6 @@ button.create {
   width: 100px;
   height: 50px;
   font-size: 110%;
-
-
+  position: absolute;
+  bottom: 5px; left: 46%;
 }
