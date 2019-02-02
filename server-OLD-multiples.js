@@ -141,15 +141,49 @@ app.post("/create_poll", (req, res) => {
     return;
   }
 
+  // console.log("POST cretae_poll!!!!!!");
+  // console.log("req.body NEWWWW: ", req.body);
   console.log("req.body: ", req.body);
-  // let temp = req.body;
+  let temp = req.body;
   // let countOfOptions = 0;
+  let tt = 0;
+  let tempEmail = 0
+  //console.log("test ",typeof temp);
+  for (let key in temp){
+    if(key.startsWith("op")){
+      // countOfOptions = key.slice(-1);
+      tt = key.charAt(key.length - 1);
+      console.log("OP: ", tt);
+    }
+  }
+
+  for (let key in temp) {
+    if(key.startsWith("email")){
+      // countOfOptions = key.slice(-1);
+      tempEmail = key.charAt(key.length - 1);
+      console.log("EMAIL: ", tempEmail);
+    }
+  }
+
+  //generating the options array
+  let optionsArr = [];
+  for(let i = 1; i<=tt; i++){
+    let x = "option"+i;
+    optionsArr.push(req.body[x]);
+  }
+
+  //generating the emails array
+  let emailsArr = [];
+  for(let i = 1; i <= tempEmail; i++){
+    let x = "email"+i;
+    emailsArr.push(req.body[x]);
+  }
 
   recordPoll(req.body, req.session.admin_id)
     .then((poll_id) => {
-      let promiseArray = req.body.option;
-      console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
-      return Promise.all(promiseArray.map((option) => {
+      //let promiseArray = req.body.option;
+      //console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
+      return Promise.all(optionsArr.map((option) => {
         console.log("option: ", option);
         return knex('option').insert({
           label: option,
@@ -157,9 +191,9 @@ app.post("/create_poll", (req, res) => {
         });
       }))
     })
-    // .then(() => {
-    //   sendURL()
-    // })
+    .then(() => {
+      sendURL()
+    })
     .then(() => {
       console.log("recorded");
       res.redirect("/admin");
@@ -234,22 +268,22 @@ app.post("/logout", (req, res) => {
   res.render("welcome");
 });
 
-// function sendURL() {
-//   const API_KEY = '180aaac2c274f753b9ebc35ca9980988-c8c889c9-c0a21c63';
-//   const DOMAIN = 'sandbox13ab78f450584a279b80af5d688f381f.mailgun.org';
-//   const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
+function sendURL() {
+  const API_KEY = '180aaac2c274f753b9ebc35ca9980988-c8c889c9-c0a21c63';
+  const DOMAIN = 'sandbox13ab78f450584a279b80af5d688f381f.mailgun.org';
+  const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
-//   const data = {
-//     from: 'Excited User <matt.r.kelly27@gmail.com>',
-//     to: 'matt.r.kelly27@gmail.com, sammarienock@gmail.com',  //add email list
-//     subject: 'Hello',
-//     text: 'Testing some Mailgun awesomeness for the Delphi project!'  //add link to poll page
-//   };
+  const data = {
+    from: 'Excited User <matt.r.kelly27@gmail.com>',
+    to: 'matt.r.kelly27@gmail.com, sammarienock@gmail.com',  //add email list
+    subject: 'Hello',
+    text: 'Testing some Mailgun awesomeness for the Delphi project!'  //add link to poll page
+  };
 
-//   mailgun.messages().send(data, (error, body) => {
-//     console.log(body);
-//   });
-// }
+  mailgun.messages().send(data, (error, body) => {
+    console.log(body);
+  });
+}
 
 
 
