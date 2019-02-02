@@ -30,6 +30,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use("/styles", sass({
   src: __dirname + "/styles",
   dest: __dirname + "/public/styles",
+  src: __dirname + "/scripts",
+  dest: __dirname + "/public/scripts",
   debug: true,
   outputStyle: 'expanded'
 }));
@@ -88,7 +90,6 @@ app.get("/admin", (req, res) => {
 // register page
 app.get("/register", (req, res) => {
   console.log ("### server.js - app.get'/REGISTER'");
-  // res.render("index");
   res.render("register");
 });
 
@@ -97,6 +98,33 @@ app.post("/register", (req, res) => {
   console.log("req.body.email: ", req.body.email, " req.body.password: ", req.body.password);
   // res.render("index");
   res.render("register");
+});
+
+
+// create_poll page
+app.get("/create_poll", (req, res) => {
+  console.log("create_pol GET");
+  res.render("create_poll");
+});
+
+app.post("/create_poll", (req, res) => {
+  // console.log("req.body.email: ", req.body.email, " req.body.password: ", req.body.password);
+  console.log("POST cretae_poll!!!!!!");
+  console.log("req.body: ", req.body);
+
+  res.redirect("/admin");
+});
+
+
+// vote page
+app.get("/vote", (req, res) => {
+  res.render("vote");
+});
+
+app.post("/vote", (req, res) => {
+  console.log("route to POST VOTE");
+  console.log("req.body.voteArray:: ", req.body.voteArray);
+  res.render("welcome");
 });
 
 
