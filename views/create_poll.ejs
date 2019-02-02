@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="/styles/create_poll.css" media="screen" />
-    <!-- <script type="text/javascript" src="/scripts/app.js"></script> -->
     <title>delphi - create poll</title>
   </head>
 
@@ -11,7 +10,7 @@
     <div class="create">
       <h2>Make a Poll! </h2>
 
-      <form action="/create_poll" method="POST">
+
         <div class="input">
           <text class="description1"> Fill in the title, description and options for your poll.</text>
           <text class="description2"> Fill in the email section to email the poll to your friends!</text>
@@ -30,23 +29,14 @@
         <div class="options">
           <h3>Options</h3>
           <div class="options-table">
-            <table>
-              <tr>
-                    <input name="option[]"type="text" style="width:150px"/>
-              </tr>
-              <tr>
-                    <input name="option[]"type="text" style="width:150px"/>
-              </tr>
-              <tr>
-                    <input name="option[]"type="text" style="width:150px"/>
-              </tr>
-              <tr>
-                    <input name="option[]"type="text" style="width:150px"/>
-              </tr>
-              <tr>
-                    <input name="option[]"type="text" style="width:150px"/>
-              </tr>
-            </table>
+
+              <input name="option[]" id="option" type="text" style="width:250px"/>
+
+              <button id="send_options">Add Option</button> <br>
+              <section class="options">
+
+              </section>
+
           </div>
         </div>
 
@@ -73,8 +63,15 @@
           </div>
         </div>
 
+      <form action="/create_poll" method="POST">
         <button class="create"> CREATE </button>
       </form>
     </div>
   </body>
+
+  <!-- JQuery -->
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+  <!-- Create Poll js -->
+  <script type="text/javascript" src="/scripts/create_poll.js"></script>
 </html>
