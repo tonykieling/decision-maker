@@ -41,6 +41,9 @@ app.use(express.static("public"));
 app.use("/api/users", usersRoutes(knex));
 
 
+const API_KEY = '180aaac2c274f753b9ebc35ca9980988-c8c889c9-c0a21c63';
+const DOMAIN = 'sandbox13ab78f450584a279b80af5d688f381f.mailgun.org';
+const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
 let cookieSession = require('cookie-session');
 app.use(cookieSession({
@@ -145,23 +148,40 @@ app.post("/create_poll", (req, res) => {
   // let temp = req.body;
   // let countOfOptions = 0;
 
+
   recordPoll(req.body, req.session.admin_id)
     .then((poll_id) => {
       let promiseArray = req.body.option;
-      console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
+
+      // send email thing
+      let emailArray = req.body.email;
+      emailArray.map((email) => {
+        console.log("emailXXXXXXXXXXXX: ", email);
+        sendURL(email, poll_id[0]);
+      });
+
+
+      // console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
       return Promise.all(promiseArray.map((option) => {
-        console.log("option: ", option);
+        // console.log("option: ", option);
         return knex('option').insert({
           label: option,
           poll_id: poll_id[0]
-        });
+        })
       }))
     })
-    // .then(() => {
-    //   sendURL()
+    // .then((poll_id) => {
+    //   // let emailArray = req.body.email;
+    //   console.log("poll_id::::", poll_id);
+    //   // console.log("emailArray: ", emailArray, "poll_id: ", poll_id);
+    //   // return Promise.all(emailArray.map((email) => {
+    //   //   // console.log("emailXXXXXXXXXXXX: ", email);
+    //   //   sendURL(email, poll_id);
+    //   // }))
+    //   // // sendURL();
+    //   // })
     // })
     .then(() => {
-      console.log("recorded");
       res.redirect("/admin");
     })
     .catch((err) => {
@@ -234,22 +254,20 @@ app.post("/logout", (req, res) => {
   res.render("welcome");
 });
 
-// function sendURL() {
-//   const API_KEY = '180aaac2c274f753b9ebc35ca9980988-c8c889c9-c0a21c63';
-//   const DOMAIN = 'sandbox13ab78f450584a279b80af5d688f381f.mailgun.org';
-//   const mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
-//   const data = {
-//     from: 'Excited User <matt.r.kelly27@gmail.com>',
-//     to: 'matt.r.kelly27@gmail.com, sammarienock@gmail.com',  //add email list
-//     subject: 'Hello',
-//     text: 'Testing some Mailgun awesomeness for the Delphi project!'  //add link to poll page
-//   };
 
-//   mailgun.messages().send(data, (error, body) => {
-//     console.log(body);
-//   });
-// }
+function sendURL(email, id) {
+  const data = {
+    from: 'Excited User <matt.r.kelly27@gmail.com>',
+    to: email,  //add email list
+    subject: `New Poll ${id}`,
+    text: `Please, take this poll: http://localhost:8080/${id}`  //add link to poll page
+  };
+
+  mailgun.messages().send(data, (error, body) => {
+    // console.log(body);
+  });
+}
 
 
 
