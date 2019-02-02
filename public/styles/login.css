@@ -1,0 +1,56 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+input {
+  width: 150px;
+  height:30px;
+  align-content: center;
+  font-size: 120%;
+  font-family: 'Roboto Mono', monospace;
+}
+button {
+  font-family: 'Roboto Mono', monospace;
+  border: solid 2px;
+  width: 80px;
+  height: 30px;
+  position: relative;
+  left: 0px; top: 0px;
+  font-size: 110%;
+}
+
+h2 {
+  border-bottom: solid;
+  text-align: center;
+}
+
+div {
+  background-color: white;
+  padding-top: 100px;
+  padding-right: 100px;
+  padding-bottom: 100px;
+  padding-left: 100px;
+  border: solid 10px;
+  }
+
+html {
+  color: white;
+  position: absolute;
+  top: 200px;
+  margin-left: 28%;
+
+}
+
+body {
+  color: black;
+  background-color: #6495ED;
+  font-family: 'Roboto Mono', monospace;
+
+
+
+
+}
+

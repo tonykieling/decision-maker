@@ -1,0 +1,24 @@
+$font-stack: Roboto Mono, monospace;
+$primary-color: #6495ed;
+
+// Main container
+
+body {
+  background-color: aquamarine;
+}
+container.main_container {
+  direction: flex;
+  flex-direction: row;
+  background-color: $primary-color;
+  font: $font-stack;
+  width: 50%;
+  height: 50%;
+}
+
+div.welcome_message {
+  border: 3px solid black;
+}
+
+div.image {
+  border: 3px solid black;
+}

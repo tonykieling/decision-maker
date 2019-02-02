@@ -1,0 +1,53 @@
+/* // Main container */
+
+body {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-content: center;
+  background-color: cornflowerblue;
+}
+section.main_container {
+  margin-top: 10%;
+  direction: flex;
+  flex-direction: column;
+  font-family: 'Roboto Mono', monospace;
+  width: 60%;
+  background-color: white;
+}
+
+div.welcome_message {
+  display: flex;
+  flex-direction: row-reverse;
+  border: 10px solid black;
+}
+p.welcome_message {
+  margin-left: 2em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+}
+
+.image {
+  border: 3px solid black;
+  height: 80%;
+}
+
+button.login {
+  margin-top: 3em;
+  margin-left: 20%;
+  font-family: 'Roboto Mono', monospace;
+  border: 2px solid black;
+  width: 15em;
+  height: 5em;
+  margin-bottom: 20px;
+}
+
+button.register {
+  margin-left: 20%;
+  font-family: 'Roboto Mono', monospace;
+  border: 2px solid black;
+  width: 15em;
+  height: 5em;
+}
