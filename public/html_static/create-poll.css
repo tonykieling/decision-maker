@@ -95,7 +95,7 @@ button.create {
   height: 50px;
   font-size: 110%;
   position: absolute;
-  bottom: 20px; left: 75%;
+  bottom: 160px; left: 75%;
 }
 
 button.admin {
@@ -106,5 +106,5 @@ button.admin {
   height: 50px;
   font-size: 110%;
   position: absolute;
-  bottom: 100px; left: 75%;
+  bottom: 220px; left: 75%;
 }
