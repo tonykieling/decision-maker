@@ -42,6 +42,15 @@ app.use("/api/users", usersRoutes(knex));
 
 
 
+let cookieSession = require('cookie-session');
+app.use(cookieSession({
+  name: 'session',
+  keys: ['Key'],
+  maxAge: 24 * 60 * 60 * 1000
+}));
+
+
+
 // Home page
 app.get("/", (req, res) => {
   console.log ("### server.js - app.get'/'");
@@ -58,6 +67,8 @@ function checkAdmin(user, password) {
   .andWhere('password', password)
 }
 
+
+
 // login page
 app.get("/login", (req, res) => {
   console.log ("### server.js - GET'/LOGIN'");
@@ -73,8 +84,9 @@ app.post("/login", (req, res) => {
       res.render("welcome");
       return;
     }
-    console.log("results are OK: ", results);
-    // res.render("/admin");
+
+    console.log("results are OK: ", results[0].id);
+    req.session.admin_id = results[0].id;
     res.redirect("/admin");
   });
 });
@@ -82,6 +94,11 @@ app.post("/login", (req, res) => {
 
 // admin page
 app.get("/admin", (req, res) => {
+  console.log("req.session.admin_id: ", req.session.admin_id);
+  if (!req.session.admin_id) {
+    res.render("login");
+    return;
+  }
   // console.log ("### server.js - GET'/LOGIN'");
   res.render("admin_homepage");
 });
@@ -103,14 +120,25 @@ app.post("/register", (req, res) => {
 
 // create_poll page
 app.get("/create_poll", (req, res) => {
+  console.log("req.session.admin_id: ", req.session.admin_id);
+  if (!req.session.admin_id) {
+    res.render("login");
+    return;
+  }
   console.log("create_pol GET");
   res.render("create_poll");
 });
 
 app.post("/create_poll", (req, res) => {
-  // console.log("req.body.email: ", req.body.email, " req.body.password: ", req.body.password);
+  // ??????????? is it necessary in poll as well ???????????????
+  // console.log("req.session.admin_id: ", req.session.admin_id);
+  // if (!req.session.admin_id) {
+    // res.render("login");
+    // return;
+  // }
+
   console.log("POST cretae_poll!!!!!!");
-  console.log("req.body: ", req.body);
+  console.log("req.body: ", req.body.title);
 
   res.redirect("/admin");
 });
@@ -129,32 +157,39 @@ app.post("/vote", (req, res) => {
 
 
 // result page
-app.get("/polls/:id", (req, res) => {
-  console.log ("### server.js - GET-results ");
-  // check if the admin is okay
-  // query postgresql for admin
+// app.get("/polls/:id", (req, res) => {
+//   console.log ("### server.js - GET-results ");
+//   // check if the admin is okay
+//   // query postgresql for admin
 
-  // if okay, check if the poll_id belongs to this admin
-  // if okay, shows the result page
-  if (!urlDatabase[req.params.id]){
-    const templateVars = {temp: req.params.id};
-    res.render("no_shortURL", templateVars);
-    return;
-  }
-  let templateVars = { urls: urlDatabase[req.params.id] };
-  if (!req.session.user_id){
-    templateVars["user"] = null;
-    res.render("no_user_page");
-    return;
-  } else {
-    if (urlDatabase[req.params.id].userID !== req.session.user_id){
-      res.send("You are not the owner of this shortURL, therefore you can not edit it.");
-    }
-    urlDatabase[req.params.id].longURL = req.body.longURL;
-    res.redirect("/urls");
-  }
+//   // if okay, check if the poll_id belongs to this admin
+//   // if okay, shows the result page
+//   if (!urlDatabase[req.params.id]){
+//     const templateVars = {temp: req.params.id};
+//     res.render("no_shortURL", templateVars);
+//     return;
+//   }
+//   let templateVars = { urls: urlDatabase[req.params.id] };
+//   if (!req.session.user_id){
+//     templateVars["user"] = null;
+//     res.render("no_user_page");
+//     return;
+//   } else {
+//     if (urlDatabase[req.params.id].userID !== req.session.user_id){
+//       res.send("You are not the owner of this shortURL, therefore you can not edit it.");
+//     }
+//     urlDatabase[req.params.id].longURL = req.body.longURL;
+//     res.redirect("/urls");
+//   }
 
-  res.render("login");
+//   res.render("login");
+// });
+
+
+// logout feature
+app.post("/logout", (req, res) => {
+  req.session = null;
+  res.render("welcome");
 });
 
 app.listen(PORT, () => {
