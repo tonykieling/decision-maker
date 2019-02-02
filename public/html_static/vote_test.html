@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="file:///Users/samanthanock/lighthouse/decision-maker/public/styles/vote_test.css"
+      type="text/css"
+    />
+
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+      $(function() {
+        $('.vote_sort').sortable();
+        $('.vote_sort').disableSelection();
+      });
+    </script>
+  </head>
+  <body>
+    <ul id="vote_sort">
+      <li class="ranked_item">Item 1</li>
+      <li class="ranked_item">Item 2</li>
+      <li class="ranked_item">Item 3</li>
+      <li class="ranked_item">Item 4</li>
+      <li class="ranked_item">Item 5</li>
+    </ul>
+    <button class="vote_submit">VOTE!</button>
+  </body>
+</html>
