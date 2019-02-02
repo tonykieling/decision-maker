@@ -1,53 +1,62 @@
-/* // Main container */
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h2{
+  border-bottom: solid;
+  text-align: center;
+  margin-bottom: 50px;
+}
 
 body {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-content: center;
-  background-color: cornflowerblue;
-}
-section.main_container {
-  margin-top: 10%;
-  direction: flex;
-  flex-direction: column;
+  color: black;
+  background-color: #6495ED;
   font-family: 'Roboto Mono', monospace;
-  width: 60%;
-  background-color: white;
 }
 
 div.welcome_message {
-  display: flex;
-  flex-direction: row-reverse;
-  border: 10px solid black;
-}
-p.welcome_message {
-  margin-left: 2em;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: center;
-}
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  border: solid 10px;
+  position: absolute;
+  top: 30px; left: 10%;
+  text-align: center;
+  height: auto;
+  width: auto;
+  }
 
-.image {
-  border: 3px solid black;
-  height: 80%;
-}
-
-button.login {
-  margin-top: 3em;
-  margin-left: 20%;
+  button.login {
   font-family: 'Roboto Mono', monospace;
-  border: 2px solid black;
-  width: 15em;
-  height: 5em;
+  border: solid 2px;
+  width: 230px;
+  height: 40px;
+  font-size: 110%;
   margin-bottom: 20px;
+  position: relative;
+  top: -250px; left: 10%;
 }
 
-button.register {
-  margin-left: 20%;
+button.register{
   font-family: 'Roboto Mono', monospace;
-  border: 2px solid black;
-  width: 15em;
-  height: 5em;
+  border: solid 2px;
+  width: 230px;
+  height: 40px;
+  font-size: 110%;
+  margin-bottom: 20px;
+  margin-right: 50px;
+  position: relative;
+  top: -190px; left: -127px;
 }
+
+img {
+
+}
+

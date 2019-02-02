@@ -12,7 +12,7 @@ h2 {
 
 div.create {
   width: 1000px;
-  height: 700px;
+  height: auto 20px;
   background-color: white;
   padding-top: 20px;
   padding-right: 20px;
@@ -26,7 +26,6 @@ div.create {
 
 div.input {
   text-align: center;
-
 }
 
 text.description1 {
@@ -40,15 +39,11 @@ text.description2 {
 div.title {
   float: center;
 }
-div.description {
 
-}
 textarea {
   font-family: 'Roboto Mono', monospace;
   font-size: 110%;
   float: center;
-
-
 }
 
 div.options-table {
@@ -67,17 +62,14 @@ div.email-table {
   font-size: 110%;
 }
 
-
 input {
   display: left;
   font-family: 'Roboto Mono', monospace;
   font-size: 110%;
-
 }
 
 div.emails {
-float: center;
-
+  float: center;
 }
 
 div.options {
@@ -86,7 +78,7 @@ div.options {
   display: inline-block;
    position: relative;
   left: 30%;
-
+  margin-bottom: 20px;
 }
 
 body {
@@ -97,10 +89,22 @@ body {
 
 button.create {
   font-family: 'Roboto Mono', monospace;
+  margin-top: 20px;
   border: solid 2px;
   width: 100px;
   height: 50px;
   font-size: 110%;
   position: absolute;
-  bottom: 100px; left: 46%;
+  bottom: 20px; left: 75%;
+}
+
+button.admin {
+  font-family: 'Roboto Mono', monospace;
+  margin-top: 20px;
+  border: solid 2px;
+  width: 100px;
+  height: 50px;
+  font-size: 110%;
+  position: absolute;
+  bottom: 100px; left: 75%;
 }

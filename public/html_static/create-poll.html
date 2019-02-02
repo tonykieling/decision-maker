@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <link rel="stylesheet" type="text/css" href="create-poll.css" media="screen" />
+      <link rel="stylesheet" href="file:///Users/samanthanock/lighthouse/decision-maker/vendor/normalize-411.css/" type="text/css"/>
     <script type="text/javascript" src="/scripts/app.js"></script>
     <title>delphi - create poll</title>
   </head>
@@ -9,26 +10,22 @@
   <body>
 
    <div class="create">
-    <h2>Make a Poll! </h2>
-
+    <h2>Create a Poll! </h2>
       <div class="input">
         <text class="description1"> Fill in the title, description and options for your poll.</text>
         <text class="description2"> Fill in the email section to email the poll to your friends!</text>
-
       <div class="title">
         <h3>Title</h3>
         <form method="POST" action="/poll">
           <textarea name="title" placeholder="title"></textarea>
         </form>
       </div>
-
       <div class="description">
         <h3>Description</h3>
         <form method="POST" action="/poll">
           <textarea name="description" placeholder="description"></textarea>
         </form>
       </div>
-
       <div class="options">
         <h3>Options</h3>
         <div class="options-table">
@@ -48,14 +45,27 @@
           <tr>
                   <input name="option5"type="text" placeholder="option" style="width:150px"/>
           </tr>
+             <tr>
+                  <input name="option1"type="text" placeholder="option" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input name="option2"type="text" placeholder="option" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input name="option3"type="text" placeholder="option" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input name="option4"type="text" placeholder="option" style="width:150px"/>
+          </tr>
+          <tr>
+                  <input name="option5"type="text" placeholder="option" style="width:150px"/>
+          </tr>
           </table>
         </div>
       </div>
-
       <div class="emails">
         <h3>Emails</h3>
         <div class="email-table">
-
               <tr>
                   <input name="email1" type="text" placeholder="email" style="width:150px"/>
               </tr>
@@ -71,15 +81,12 @@
               <tr>
                   <input name="email5"type="text" placeholder="email" style="width:150px"/>
               </tr>
-
         </table>
       </div>
       </div>
-
       </div>
-
-
   </div>
+     <button class="admin"> BACK TO ADMIN </button>
     <button class="create"> CREATE </button>
 
   </body>
