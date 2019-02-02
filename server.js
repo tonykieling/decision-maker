@@ -59,6 +59,7 @@ app.get("/", (req, res) => {
 });
 
 // https://gist.github.com/laurenfazah/f9343ae8577999d301334fc68179b485
+// check admin and password (simple away)
 function checkAdmin(user, password) {
   return knex
   .select("*")
@@ -66,6 +67,10 @@ function checkAdmin(user, password) {
   .where('email', user)
   .andWhere('password', password)
 }
+
+
+
+
 
 
 
@@ -130,18 +135,50 @@ app.get("/create_poll", (req, res) => {
 });
 
 app.post("/create_poll", (req, res) => {
-  // ??????????? is it necessary in poll as well ???????????????
   // console.log("req.session.admin_id: ", req.session.admin_id);
-  // if (!req.session.admin_id) {
-    // res.render("login");
-    // return;
-  // }
+  if (!req.session.admin_id) {
+    res.render("login");
+    return;
+  }
 
-  console.log("POST cretae_poll!!!!!!");
-  console.log("req.body: ", req.body.title);
-
-  res.redirect("/admin");
+  // console.log("POST cretae_poll!!!!!!");
+  // console.log("req.body NEWWWW: ", req.body);
+  recordPoll(req.body, req.session.admin_id)
+    .then((poll_id) => {
+      let promiseArray = req.body.option;
+      // console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
+      return Promise.all(promiseArray.map((option) => {
+        console.log("option: ", option);
+        return knex('option').insert({
+          label: option,
+          poll_id: poll_id[0]
+        });
+      }))
+    })
+    .then(() => {
+      console.log("recorded");
+      res.redirect("/admin");
+    })
+    .catch((err) => {
+      console.log(err);
+      res.sendStatus(400);
+    })
 });
+
+
+// record poll in the database
+function recordPoll(data, admin_id) {
+  console.log("data: ", data, "admin_id: ", admin_id);
+  return knex('poll').returning('id')
+    .insert(
+      {question: data.title,
+      description: data.description,
+      admin_id: admin_id}
+    );
+}
+
+
+
 
 
 // vote page
