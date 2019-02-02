@@ -4,9 +4,9 @@ var mailgun = require('mailgun-js')({apiKey: API_KEY, domain: DOMAIN});
 
 const data = {
   from: 'Excited User <matt.r.kelly27@gmail.com>',
-  to: 'matt.r.kelly27@gmail.com, tony.kieling@gmail.com',
+  to: 'matt.r.kelly27@gmail.com, tony.kieling@gmail.com',  //add email list
   subject: 'Hello',
-  text: 'Testing some Mailgun awesomeness for the Delphi project!'
+  text: 'Testing some Mailgun awesomeness for the Delphi project!'  //add link to poll page
 };
 
 mailgun.messages().send(data, (error, body) => {
