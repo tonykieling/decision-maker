@@ -12,10 +12,22 @@
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script>
-      $(function() {
-        $('#vote_sort').sortable();
-        $('#vote_sort').disableSelection();
-      });
+        $(function() {
+          $('#vote_sort').sortable();
+          $('#vote_sort').disableSelection();
+        });
+        $('.vote_submit').on('click', function(event) {
+      event.preventDefault();
+      let voteArray = [];
+      $('.ranked_item').each(function(index, value) {
+        voteArray.push$('.ranked_item');
+        $(function() {
+          $('.vote_submit').click(function() {
+            $('.vote_container').fadeToggle('slow', function() {
+              $('.post_vote').append('<div>Thank you!</div>');
+            });
+          });
+        });
     </script>
   </head>
   <body>
@@ -35,5 +47,6 @@
       </ul>
       <button class="vote_submit">VOTE!</button>
     </section>
+    <div class="post_vote"></div>
   </body>
 </html>

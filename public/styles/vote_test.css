@@ -45,3 +45,6 @@ body {
   color: cornflowerblue;
   font-style: italic;
 }
+.post_vote {
+  font-size: 6em;
+}

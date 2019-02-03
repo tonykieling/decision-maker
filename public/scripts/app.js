@@ -12,11 +12,9 @@ $(() => {
   $(function() {
     $('.vote_sort').sortable();
   });
-  $('.vote_submit').on('click', function(event) {
-    event.preventDefault();
-    let voteArray = [];
-    $('.ranked_item').each(function(index, value) {
-      voteArray.push$('.ranked_item');
+  // $('.vote_submit').on('click', function(event) {
+  //   event.preventDefault();
+  //   let voteArray = [];
+  //   $('.ranked_item').each(function(index, value) {
+  //     voteArray.push$('.ranked_item');
     });
-  });
-});
