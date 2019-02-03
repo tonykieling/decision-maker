@@ -11,25 +11,28 @@
       $(function() {
         $('#vote_sort').sortable();
         $('#vote_sort').disableSelection();
+
+
       });
     </script>
   </head>
   <body>
     <section class="vote_container">
-      <div class="poll_title">
-
-        <h1><%= dataToVote.question %></h1>
-        <h2><%= dataToVote.description %></h2>
-        <p>
-          This is my poll, please click and drag to rearrange blah blah blah
-        </p>
-      </div>
-      <ul id="vote_sort">
-        <% for (let i of dataToVote.options) { %>
-          <li class="ranked_item"><%= i %></li>
-        <% }%>
-      </ul>
-      <button class="vote_submit">VOTE!</button>
+      <form action="/vote" method="POST">
+        <div class="poll_title">
+          <h1><%= dataToVote.question %></h1>
+          <h2><%= dataToVote.description %></h2>
+          <p>
+            This is my poll, please click and drag to rearrange in your preference order (high to low).
+          </p>
+        </div>
+        <ul id="vote_sort">
+          <% for (let i in dataToVote.options) { %>
+            <li class="ranked_item" name="ids[]" > <%= dataToVote.options[i].label %> </li>
+          <% }%>
+        </ul>
+        <button class="vote_submit">VOTE!</button>
+      </form>
     </section>
   </body>
 </html>

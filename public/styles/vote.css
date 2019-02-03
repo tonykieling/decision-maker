@@ -12,22 +12,32 @@ body {
   border: 10px solid black;
   width: 50%;
   height: auto;
+
 }
 .vote_container:hover {
-  box-shadow: 10px 10px blanchedalmond;
+    box-shadow: 5px 10px 100px #ffffff;
 }
 #vote_sort {
+  display: flex;
+  align-content: center;
+  flex-direction: column;
   margin: 0;
   padding: 0;
   width: 60%;
   font-size: 3em;
   background-color: white;
+  position: relative;
+  left: 10%;
 }
 .poll_title {
   display: flex;
   align-items: center;
   flex-direction: column;
   margin-top: 3em;
+}
+
+p{
+  margin-left: 1.5em;
 }
 .vote_submit {
   font-family: 'Roboto Mono', monospace;
@@ -37,6 +47,8 @@ body {
   width: 10em;
   height: 4em;
   border: 3px solid black;
+  position: relative;
+  left: 35%;
 }
 .ranked_item {
   margin-top: 0.5em;

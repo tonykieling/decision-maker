@@ -204,6 +204,7 @@ app.get("/vote/:id", (req, res) => {
     console.log("poll_iD", poll_raw, "poll_id[0].question", poll_raw[0].question);
     const poll = { dataToVote :
       {
+
       question: poll_raw[0].question,
       description: poll_raw[0].description,
       }
@@ -212,14 +213,22 @@ app.get("/vote/:id", (req, res) => {
     let options = [];
     retrieveOptionData(poll_id)
       .then((data) => {
-        console.log("data::: ", data.length);
+        console.log("data::: ", data);
         for(let i in data) {
           console.log("iiiiiii: ", data[i].label);
-
-          if (data[i].label !== '')
-            options.push(data[i].label);
+          const tempID = data[i].id;
+          const tempLabel = data[i].label;
+          console.log("tempID: ", tempID);
+          if (tempLabel !== '') {
+            let tempObj = {};
+            tempObj = {
+              id: tempID,
+              label: data[i].label
+            };
+            options.push(tempObj);
+          }
         }
-        console.log("ALLLLL options: ", options);
+        console.log("ALLLLLLLLLLL options: ", options);
         poll.dataToVote.options = options;
         console.log("poll cleaned: ", poll);
         res.render("vote", poll);
@@ -253,9 +262,14 @@ function retrieveOptionData(poll_id) {
 
 app.post("/vote", (req, res) => {
   console.log("route to POST VOTE");
-  console.log("req.body.voteArray:: ", req.body.voteArray);
+  // console.log("req.body.voteArray:: ", req.body.voteArray);
+  console.log("req.body.ids: ", req.body.ids);
   res.render("welcome");
 });
+
+
+
+
 
 
 

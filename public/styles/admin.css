@@ -1,0 +1,79 @@
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+
+body {
+  color: black;
+  background-color: #6495ED;
+  font-family: 'Roboto Mono', monospace;
+}
+
+h2 {
+  border-bottom: solid;
+  text-align: center;
+}
+
+section.admin-elements {
+  width: 500px;
+  height: 500px;
+  background-color: white;
+  padding-top: 20px;
+  padding-right: 20px;
+  padding-bottom: 20px;
+  padding-left: 20px;
+  border: solid 10px;
+  position: absolute;
+  top: 30px; left: 35%;
+  text-align: center;
+  height: auto;
+  }
+
+
+  section.admin-elements:hover {
+     box-shadow: 5px 10px 100px #ffffff;
+  }
+
+
+
+
+button.logout {
+  float: center;
+  font-family: 'Roboto Mono', monospace;
+  margin-top: 20px;
+  border: solid 2px;
+  width: 100px;
+  height: 50px;
+  font-size: 110%;
+  position: relative;
+  bottom: 20px; left: -32%;
+}
+
+button.create_poll {
+  float: center;
+  font-family: 'Roboto Mono', monospace;
+  margin-top: 20px;
+  border: solid 2px;
+  width: 100px;
+  height: 50px;
+  font-size: 110%;
+  position: relative;
+  bottom: 20px; left: -32%;
+}
+
+
+button.results {
+  float: center;
+  font-family: 'Roboto Mono', monospace;
+  margin-top: 20px;
+  border: solid 2px;
+  width: 100px;
+  height: 50px;
+  font-size: 110%;
+  position: relative;
+  bottom: 20px; left: -32%;
+}
+

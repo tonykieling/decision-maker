@@ -4,11 +4,9 @@ html {
 *, *:before, *:after {
   box-sizing: inherit;
 }
-
-h2{
+h2.title{
   border-bottom: solid;
   text-align: center;
-  margin-bottom: 50px;
 }
 
 body {
@@ -17,9 +15,9 @@ body {
   font-family: 'Roboto Mono', monospace;
 }
 
-div.welcome_message {
-  width: auto;
-  height: 650px;
+div.main {
+  width: 500px;
+  height: 500px;
   background-color: white;
   padding-top: 20px;
   padding-right: 20px;
@@ -27,41 +25,19 @@ div.welcome_message {
   padding-left: 20px;
   border: solid 10px;
   position: absolute;
-  top: 30px; left: 10%;
+  top: 30px; left: 30%;
   text-align: center;
-
-
   }
 
-  div.welcome_message:hover {
+
+  div.main:hover {
      box-shadow: 5px 10px 100px #ffffff;
   }
 
-  button.login {
+  button.admin {
   font-family: 'Roboto Mono', monospace;
   border: solid 2px;
   width: 230px;
   height: 40px;
   font-size: 110%;
-  margin-bottom: 20px;
-  position: relative;
-  top: 200px; left: -28%;
-}
-
-button.register{
-  font-family: 'Roboto Mono', monospace;
-  border: solid 2px;
-  width: 230px;
-  height: 40px;
-  font-size: 110%;
-  margin-bottom: 20px;
-  position: relative;
-  top: 200px; left: -28%;
-}
-
-img {
-  margin-left: 500px;
-  position: relative;
-  top: -100px; left: 0%;
-
 }
