@@ -121,7 +121,6 @@ app.get("/register", (req, res) => {
 app.post("/register", (req, res) => {
   console.log ("### server.js - app.get'/LOGIN'");
   console.log("req.body.email: ", req.body.email, " req.body.password: ", req.body.password);
-  // res.render("index");
   res.render("register");
 });
 
@@ -156,7 +155,6 @@ app.post("/create_poll", (req, res) => {
       // send email thing
       let emailArray = req.body.email;
       emailArray.map((email) => {
-        console.log("emailXXXXXXXXXXXX: ", email);
         sendURL(email, poll_id[0]);
       });
 
@@ -201,7 +199,7 @@ app.get("/vote/:id", (req, res) => {
 
   retrievePolldata(poll_id)
   .then((poll_raw) => {
-    console.log("poll_iD", poll_raw, "poll_id[0].question", poll_raw[0].question);
+    // console.log("poll_iD", poll_raw, "poll_id[0].question", poll_raw[0].question);
     const poll = { dataToVote :
       {
 
@@ -213,12 +211,9 @@ app.get("/vote/:id", (req, res) => {
     let options = [];
     retrieveOptionData(poll_id)
       .then((data) => {
-        console.log("data::: ", data);
         for(let i in data) {
-          console.log("iiiiiii: ", data[i].label);
           const tempID = data[i].id;
           const tempLabel = data[i].label;
-          console.log("tempID: ", tempID);
           if (tempLabel !== '') {
             let tempObj = {};
             tempObj = {
@@ -228,7 +223,7 @@ app.get("/vote/:id", (req, res) => {
             options.push(tempObj);
           }
         }
-        console.log("ALLLLLLLLLLL options: ", options);
+        console.log("ALLLLLLLLLLL options: \n", options);
         poll.dataToVote.options = options;
         console.log("poll cleaned: ", poll);
         res.render("vote", poll);
@@ -255,7 +250,6 @@ function retrieveOptionData(poll_id) {
       results.forEach((result) => {
         tempArray.push(result);
       })
-      console.log("tempArray: ", tempArray);
       return tempArray;
     });
 }
@@ -263,11 +257,23 @@ function retrieveOptionData(poll_id) {
 app.post("/vote", (req, res) => {
   console.log("route to POST VOTE");
   // console.log("req.body.voteArray:: ", req.body.voteArray);
-  console.log("req.body.ids: ", req.body.ids);
-  res.render("welcome");
+  console.log("req.body.ids: ", req.body);
+  // res.render("welcome");
 });
 
 
+// results
+// create_poll page
+// app.get("/results", (req, res) => {
+//   console.log("results ROUTE");
+//   console.log("req.session.admin_id: ", req.session.admin_id);
+//   if (!req.session.admin_id) {
+//     res.render("login");
+//     return;
+//   }
+
+
+// }
 
 
 

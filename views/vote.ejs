@@ -12,6 +12,42 @@
         $('#vote_sort').sortable();
         $('#vote_sort').disableSelection();
 
+        $("#vote_submit").on("click", function(event) {
+          // let vote = [];
+          // const voteJQ = $("#vote_sort").children();
+          // console.log("vote: ", voteJQ.attr("data-id"));
+          // for (let k in voteJQ){
+
+          //   console.log(voteJQ[k].attr("data-id"));
+          //   // let object = {};
+          // //   object = {
+          // //     key: voteJQ.i,
+          // //     value: voteJQ.
+          //   }
+          //   console.log("object: ", object);
+          //   vote.push(object);
+          // }
+          let vote = Array.from($("#vote_sort").children().map((i, item) => {
+            console.log($(item).attr("data-id"));
+            console.log("i: ", i);
+            let object = {};
+            object = {
+              key: i,
+              value: $(item).attr("data-id")
+            }
+            console.log("object: ", object);
+            // return $(item).attr("data-id");
+            return object;
+            // vote.push(object);
+          }));
+          console.log("vote: ", vote);
+
+          // $.ajax({
+          //   method: "POST",
+          //   url: "/vote",
+          //   data: vote
+          // })
+        })
 
       });
     </script>
@@ -28,10 +64,10 @@
         </div>
         <ul id="vote_sort">
           <% for (let i in dataToVote.options) { %>
-            <li class="ranked_item" name="ids[]" > <%= dataToVote.options[i].label %> </li>
+            <li class="ranked_item" data-id="<%=dataToVote.options[i].id%>" > <%= dataToVote.options[i].label %> </li>
           <% }%>
         </ul>
-        <button class="vote_submit">VOTE!</button>
+        <button id="vote_submit">VOTE!</button>
       </form>
     </section>
   </body>
