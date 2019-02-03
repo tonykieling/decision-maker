@@ -1,16 +1,50 @@
-#vote_sort {
+body {
+  display: flex;
+  justify-content: center;
+  background-color: cornflowerblue;
+  font-family: 'Roboto Mono', monospace;
+}
+.vote_container {
+  background-color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  list-style-type: none;
+  border: 10px solid black;
+  width: 50%;
+  height: auto;
+}
+.vote_container:hover {
+  box-shadow: 10px 10px blanchedalmond;
+}
+#vote_sort {
   margin: 0;
   padding: 0;
   width: 60%;
   font-size: 3em;
+  background-color: white;
 }
-#sortable li {
-  margin: 0 3px 3px 3px;
-  padding: 0.4em;
-  padding-left: 1.5em;
-  height: 18px;
+.poll_title {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 3em;
+}
+.vote_submit {
+  font-family: 'Roboto Mono', monospace;
+  font-size: 1em;
+  margin-top: 3em;
+  margin-bottom: 3em;
+  width: 10em;
+  height: 4em;
+  border: 3px solid black;
+}
+.ranked_item {
+  margin-top: 0.5em;
+}
+.ranked_item:hover {
+  color: cornflowerblue;
+  font-style: italic;
+}
+.post_vote {
+  font-size: 6em;
 }

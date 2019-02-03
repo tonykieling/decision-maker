@@ -170,17 +170,6 @@ app.post("/create_poll", (req, res) => {
         })
       }))
     })
-    // .then((poll_id) => {
-    //   // let emailArray = req.body.email;
-    //   console.log("poll_id::::", poll_id);
-    //   // console.log("emailArray: ", emailArray, "poll_id: ", poll_id);
-    //   // return Promise.all(emailArray.map((email) => {
-    //   //   // console.log("emailXXXXXXXXXXXX: ", email);
-    //   //   sendURL(email, poll_id);
-    //   // }))
-    //   // // sendURL();
-    //   // })
-    // })
     .then(() => {
       res.redirect("/admin");
     })
@@ -207,9 +196,42 @@ function recordPoll(data, admin_id) {
 
 
 // vote page
-app.get("/vote", (req, res) => {
-  res.render("vote");
+app.get("/vote/:id", (req, res) => {
+  const poll_id = req.params.id;
+
+  retrievePolldata(poll_id)
+  .then((poll_raw) => {
+    console.log("poll_iD", poll_raw, "poll_id[0].question", poll_raw[0].question);
+    const poll = {
+      question: poll_raw[0].question,
+      description: poll_raw[0].description,
+    };
+
+    const options = retrieveOptionData(poll_id);
+    console.log("all options", options);
+
+    console.log("poll cleaned: ", poll);
+    res.render("vote", poll);
+  })
+  .catch((err) => {
+    console.log("err: ", err);
+    res.sendStatus(400);
+  })
+
 });
+
+
+function retrievePolldata(poll_id){
+  return knex.select('*')
+    .from('poll')
+    .where('id', poll_id)
+}
+
+function retrieveOptionData(poll_id) {
+    knex.select('*')
+      .from('option')
+      .where('poll_id', poll_id);
+}
 
 app.post("/vote", (req, res) => {
   console.log("route to POST VOTE");
@@ -218,34 +240,6 @@ app.post("/vote", (req, res) => {
 });
 
 
-// result page
-// app.get("/polls/:id", (req, res) => {
-//   console.log ("### server.js - GET-results ");
-//   // check if the admin is okay
-//   // query postgresql for admin
-
-//   // if okay, check if the poll_id belongs to this admin
-//   // if okay, shows the result page
-//   if (!urlDatabase[req.params.id]){
-//     const templateVars = {temp: req.params.id};
-//     res.render("no_shortURL", templateVars);
-//     return;
-//   }
-//   let templateVars = { urls: urlDatabase[req.params.id] };
-//   if (!req.session.user_id){
-//     templateVars["user"] = null;
-//     res.render("no_user_page");
-//     return;
-//   } else {
-//     if (urlDatabase[req.params.id].userID !== req.session.user_id){
-//       res.send("You are not the owner of this shortURL, therefore you can not edit it.");
-//     }
-//     urlDatabase[req.params.id].longURL = req.body.longURL;
-//     res.redirect("/urls");
-//   }
-
-//   res.render("login");
-// });
 
 
 // logout feature
@@ -261,7 +255,7 @@ function sendURL(email, id) {
     from: 'Excited User <matt.r.kelly27@gmail.com>',
     to: email,  //add email list
     subject: `New Poll ${id}`,
-    text: `Please, take this poll: http://localhost:8080/${id}`  //add link to poll page
+    text: `Please, take this poll: http://localhost:8080/vote/${id}`  //add link to poll page
   };
 
   mailgun.messages().send(data, (error, body) => {
