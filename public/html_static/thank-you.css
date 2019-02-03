@@ -25,6 +25,11 @@ div {
   top: 200px; left: 20%;
   }
 
+
+  div:hover {
+     box-shadow: 5px 10px 100px #ffffff;
+  }
+
 body {
   color: black;
   background-color: #6495ED;

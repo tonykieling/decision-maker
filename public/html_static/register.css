@@ -36,6 +36,11 @@ div {
   border: solid 10px;
   }
 
+
+  div:hover {
+     box-shadow: 5px 10px 100px #ffffff;
+  }
+
 html {
   color: white;
   position: absolute;

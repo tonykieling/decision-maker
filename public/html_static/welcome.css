@@ -31,6 +31,11 @@ div.welcome_message {
   text-align: center;
   height: auto;
   width: auto;
+
+  }
+
+  div.welcome_message:hover {
+     box-shadow: 5px 10px 100px #ffffff;
   }
 
   button.login {
@@ -41,7 +46,7 @@ div.welcome_message {
   font-size: 110%;
   margin-bottom: 20px;
   position: relative;
-  top: -250px; left: 10%;
+  top: -250px; left: 13%;
 }
 
 button.register{
@@ -53,10 +58,7 @@ button.register{
   margin-bottom: 20px;
   margin-right: 50px;
   position: relative;
-  top: -190px; left: -127px;
+  top: -190px; left: -92px;
 }
 
-img {
-
-}
 

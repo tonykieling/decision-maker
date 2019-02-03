@@ -27,13 +27,18 @@ h2 {
   text-align: center;
 }
 
-div {
+div.main {
   background-color: white;
   padding-top: 100px;
   padding-right: 100px;
   padding-bottom: 100px;
   padding-left: 100px;
   border: solid 10px;
+  }
+
+
+  div.main:hover {
+     box-shadow: 5px 10px 100px #ffffff;
   }
 
 html {

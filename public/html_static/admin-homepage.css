@@ -33,6 +33,13 @@ section.admin-elements {
   }
 
 
+  section.admin-elements:hover {
+     box-shadow: 5px 10px 100px #ffffff;
+  }
+
+
+
+
 button.logout {
   font-family: 'Roboto Mono', monospace;
   margin-top: 20px;

@@ -29,6 +29,11 @@ div.main {
   text-align: center;
   }
 
+
+  div.main:hover {
+     box-shadow: 5px 10px 100px #ffffff;
+  }
+
   button.admin {
   font-family: 'Roboto Mono', monospace;
   border: solid 2px;
