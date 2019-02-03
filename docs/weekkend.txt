@@ -1,0 +1,31 @@
+PENDING STUFF
+
+integrate the new create poll with the database
+
+send email to email's list in create_poll page
+ how to do it
+  send what?
+  how does it correlate to the database
+    ?create a random identifier? right now, NO.
+
+prepare vote skeleton's page
+  html structure and behaviours
+    drag +
+    after voting
+      thanksyou page +
+      email to the admin
+        what content
+  how does it record data into the database
+    check if timestamp + 24 hours
+
+prepare result's page
+  html structure
+  procede a query to feed the page
+
+
+
+enhance admin's page
+  style
+  content (pending and closed polls)
+
+enhance welcome's page

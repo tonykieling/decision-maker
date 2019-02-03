@@ -18,18 +18,16 @@
     <section class="vote_container">
       <div class="poll_title">
 
-        <h1><%= question %></h1>
-        <h2><%= description %></h2>
+        <h1><%= dataToVote.question %></h1>
+        <h2><%= dataToVote.description %></h2>
         <p>
           This is my poll, please click and drag to rearrange blah blah blah
         </p>
       </div>
       <ul id="vote_sort">
-        <li class="ranked_item">Item 1</li>
-        <li class="ranked_item">Item 2</li>
-        <li class="ranked_item">Item 3</li>
-        <li class="ranked_item">Item 4</li>
-        <li class="ranked_item">Item 5</li>
+        <% for (let i of dataToVote.options) { %>
+          <li class="ranked_item"><%= i %></li>
+        <% }%>
       </ul>
       <button class="vote_submit">VOTE!</button>
     </section>

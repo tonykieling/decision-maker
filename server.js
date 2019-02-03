@@ -202,16 +202,28 @@ app.get("/vote/:id", (req, res) => {
   retrievePolldata(poll_id)
   .then((poll_raw) => {
     console.log("poll_iD", poll_raw, "poll_id[0].question", poll_raw[0].question);
-    const poll = {
+    const poll = { dataToVote :
+      {
       question: poll_raw[0].question,
       description: poll_raw[0].description,
+      }
     };
 
-    const options = retrieveOptionData(poll_id);
-    console.log("all options", options);
+    let options = [];
+    retrieveOptionData(poll_id)
+      .then((data) => {
+        console.log("data::: ", data.length);
+        for(let i in data) {
+          console.log("iiiiiii: ", data[i].label);
 
-    console.log("poll cleaned: ", poll);
-    res.render("vote", poll);
+          if (data[i].label !== '')
+            options.push(data[i].label);
+        }
+        console.log("ALLLLL options: ", options);
+        poll.dataToVote.options = options;
+        console.log("poll cleaned: ", poll);
+        res.render("vote", poll);
+      });
   })
   .catch((err) => {
     console.log("err: ", err);
@@ -224,13 +236,19 @@ app.get("/vote/:id", (req, res) => {
 function retrievePolldata(poll_id){
   return knex.select('*')
     .from('poll')
-    .where('id', poll_id)
+    .where('id', poll_id);
 }
 
 function retrieveOptionData(poll_id) {
-    knex.select('*')
-      .from('option')
-      .where('poll_id', poll_id);
+  let tempArray = [];
+  return knex.from('option').select('*').where('poll_id', poll_id)
+    .then((results) => {
+      results.forEach((result) => {
+        tempArray.push(result);
+      })
+      console.log("tempArray: ", tempArray);
+      return tempArray;
+    });
 }
 
 app.post("/vote", (req, res) => {
