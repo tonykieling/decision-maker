@@ -191,15 +191,26 @@ function recordPoll(data, admin_id) {
 
 
 // admin page
-app.get("/admin", (req, res) => {
+app.get("/results", (req, res) => {
   console.log("req.session.admin_id: ", req.session.admin_id);
   if (!req.session.admin_id) {
     res.render("login");
     return;
   }
 
+    getPolls(req.session.admin_id)
+      .then((results) => {
+        res.render("results", { results });
+      });
+
+});
 
 
+function getPolls(admin_id){
+  return knex.select('id')
+    .from('poll')
+    .where('admin_id', admin_id);
+}
 
 
 // vote page
@@ -271,24 +282,6 @@ app.post("/vote", (req, res) => {
 
 
 
-
-// function recordVote(data) {
-//   const MAX = data.length;
-//   console.log("MAX: ", MAX);
-
-//   for (let i = 0; i < data.length; i += 1) {
-//     console.log(data[i]);
-//     // knex('vote')
-//     //   .insert(
-//     //     { option_id: data.option_id,
-//     //       score: data.score
-//     //     }
-//     //   ).then(() => {
-//     //     console.log("recorded");
-//     //   });
-//   }
-// }
-
 // record vote in the database
 function recordVote(option_id, score) {
   return knex('vote')
@@ -305,18 +298,41 @@ function recordVote(option_id, score) {
 
 
 
-// results
-// create_poll page
-// app.get("/results", (req, res) => {
-//   console.log("results ROUTE");
-//   console.log("req.session.admin_id: ", req.session.admin_id);
+
+app.get("/result", (req, res) => {
+  res.render("result");
+});
+
+// admin page
+// todo
+// app.get("/result/:id", (req, res) => {
 //   if (!req.session.admin_id) {
 //     res.render("login");
 //     return;
 //   }
+//   const poll_id = req.params.id;
+//   console.log("poll_id: ", poll_id);
+//     getVotes(poll_id)
+//       .then((results) => {
+//         console.log("results:: ", results);
 
+//         let scores = {};
+//         for (let i in results) {
 
+//         }
+
+//         // res.render("result", { results });
+//       });
+// });
+
+// function getVotes(poll_id){
+//   return knex.select('id')
+//     .from('option')
+//     .where('poll_id', poll_id);
 // }
+
+
+
 
 
 

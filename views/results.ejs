@@ -7,12 +7,20 @@
   <body>
 
     <div class="main">
-    <h2 class="title">Results </h2>
-    <h3>Question</h3>
-    <h3>Description</h3>
-    <h3>Dates</h3>
-    <h1>Winner!</h1>
-    <button class="admin"> back to admin page</button>
+    <h2 class="title">Polls: </h2>
+
+    <ul id="vote_sort">
+        <% for (let i in results) { %>
+<%=console.log("results: ", results[i].id);%>
+<%}%>
+        <% for (let i in results) { %>
+          <li class="ranked_item"> <a href="http://localhost:8080/result">Poll - <%=results[i].id%></a> </li>
+        <% }%>
+      </ul>
+
+    <form action="/admin" method="GET">
+      <button class="admin"> back to admin page</button>
+    </form>
   </div>
   </body>
 </html>

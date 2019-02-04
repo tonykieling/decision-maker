@@ -28,8 +28,10 @@ section.admin-elements {
   border: solid 10px;
   position: absolute;
   top: 30px; left: 35%;
-  text-align: center;
   height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
   }
 
 
@@ -41,7 +43,6 @@ section.admin-elements {
 
 
 button.logout {
-  float: center;
   font-family: 'Roboto Mono', monospace;
   margin-top: 20px;
   border: solid 2px;
@@ -53,7 +54,6 @@ button.logout {
 }
 
 button.create_poll {
-  float: center;
   font-family: 'Roboto Mono', monospace;
   margin-top: 20px;
   border: solid 2px;
@@ -66,7 +66,6 @@ button.create_poll {
 
 
 button.results {
-  float: center;
   font-family: 'Roboto Mono', monospace;
   margin-top: 20px;
   border: solid 2px;
@@ -76,4 +75,3 @@ button.results {
   position: relative;
   bottom: 20px; left: -32%;
 }
-
