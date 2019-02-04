@@ -10,9 +10,10 @@ h2 {
   text-align: center;
 }
 
+
 div.create {
   width: 1000px;
-  height: auto 20px;
+  height: 700px;
   background-color: white;
   padding-top: 20px;
   padding-right: 20px;
@@ -26,6 +27,7 @@ div.create {
 
 div.input {
   text-align: center;
+
 }
 
 text.description1 {
@@ -39,47 +41,41 @@ text.description2 {
 div.title {
   float: center;
 }
-
-textarea {
-  font-family: 'Roboto Mono', monospace;
-  font-size: 110%;
-  float: center;
+div.description {
+ display: inline-block;
 }
+
+
 
 div.options-table {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   font-family: 'Roboto Mono', monospace;
-  font-size: 110%;
 }
 
 div.email-table {
   display: flex;
   flex-direction: column;
   align-items: center;
+
   font-family: 'Roboto Mono', monospace;
-  font-size: 110%;
 }
+
 
 input {
   display: left;
-  font-family: 'Roboto Mono', monospace;
-  font-size: 110%;
 }
 
 div.emails {
-  float: center;
+  display: left;
+
 }
 
-div.options {
-  float: left;
-  margin-right: 50px;
-  display: inline-block;
-   position: relative;
-  left: 30%;
-  margin-bottom: 20px;
-}
+
+
+
 
 body {
   color: black;
@@ -89,22 +85,10 @@ body {
 
 button.create {
   font-family: 'Roboto Mono', monospace;
-  margin-top: 20px;
   border: solid 2px;
   width: 100px;
   height: 50px;
   font-size: 110%;
-  position: absolute;
-  bottom: 20px; left: 75%;
-}
 
-button.admin {
-  font-family: 'Roboto Mono', monospace;
-  margin-top: 20px;
-  border: solid 2px;
-  width: 100px;
-  height: 50px;
-  font-size: 110%;
-  position: absolute;
-  bottom: 100px; left: 75%;
+
 }

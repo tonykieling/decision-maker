@@ -60,3 +60,15 @@ p{
 .post_vote {
   font-size: 6em;
 }
+
+button#vote_submit {
+    font-family: 'Roboto Mono', monospace;
+    margin-top: 20px;
+    border: solid 2px;
+    width: 100px;
+    height: 50px;
+    font-size: 110%;
+    position: absolute;
+    bottom: 0px; left: 63%;
+
+}
