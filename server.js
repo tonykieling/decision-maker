@@ -257,9 +257,36 @@ function retrieveOptionData(poll_id) {
 app.post("/vote", (req, res) => {
   console.log("route to POST VOTE");
   // console.log("req.body.voteArray:: ", req.body.voteArray);
-  console.log("req.body.ids: ", req.body);
+  console.log("req.body: ", req.body);
+  const vote = req.body.votes;
+  console.log("vote: ", vote);
+
+  const MAX = vote.length;
+  console.log("MAX: ", MAX);
+
+  for (let i = 0; i < MAX; i += 1){
+    recordVote(vote[i], MAX - i);
+  }
   // res.render("welcome");
 });
+
+
+
+// record vote in the database
+function recordVote(option_id, score) {
+  console.log("option_id: ", option_id, "score: ", score);
+  return knex('vote')
+    .insert(
+      { option_id,
+        score
+      }
+    ).then(() => {
+      console.log("recorded");
+    });
+}
+
+
+
 
 
 // results
