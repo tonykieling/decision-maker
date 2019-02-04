@@ -13,8 +13,10 @@ body {
 }
 
 h2 {
-  border-bottom: solid;
+  /* border-bottom: solid; */
   text-align: center;
+  position: relative;
+  top: -20px;
 }
 
 section.admin-elements {
@@ -28,8 +30,10 @@ section.admin-elements {
   border: solid 10px;
   position: absolute;
   top: 30px; left: 35%;
-  text-align: center;
   height: auto;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-evenly;
   }
 
 
@@ -41,7 +45,6 @@ section.admin-elements {
 
 
 button.logout {
-  float: center;
   font-family: 'Roboto Mono', monospace;
   margin-top: 20px;
   border: solid 2px;
@@ -49,11 +52,10 @@ button.logout {
   height: 50px;
   font-size: 110%;
   position: relative;
-  bottom: 20px; left: -32%;
+  bottom: 20px; left: -100px;
 }
 
 button.create_poll {
-  float: center;
   font-family: 'Roboto Mono', monospace;
   margin-top: 20px;
   border: solid 2px;
@@ -61,12 +63,11 @@ button.create_poll {
   height: 50px;
   font-size: 110%;
   position: relative;
-  bottom: 20px; left: -32%;
+  bottom: 20px; left: -100px;
 }
 
 
 button.results {
-  float: center;
   font-family: 'Roboto Mono', monospace;
   margin-top: 20px;
   border: solid 2px;
@@ -74,6 +75,12 @@ button.results {
   height: 50px;
   font-size: 110%;
   position: relative;
-  bottom: 20px; left: -32%;
+  bottom: 20px; left: -100px;
 }
 
+img {
+  height: 150px;
+  width: 150px;
+  position: relative;
+  right: -275px; bottom: -80px;
+}

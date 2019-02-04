@@ -19,7 +19,7 @@ body {
 
 div.welcome_message {
   width: auto;
-  height: 650px;
+  height: 550px;
   background-color: white;
   padding-top: 20px;
   padding-right: 20px;
@@ -45,7 +45,7 @@ div.welcome_message {
   font-size: 110%;
   margin-bottom: 20px;
   position: relative;
-  top: 200px; left: -28%;
+  top: 160px; left: -28%;
 }
 
 button.register{
@@ -56,11 +56,14 @@ button.register{
   font-size: 110%;
   margin-bottom: 20px;
   position: relative;
-  top: 200px; left: -28%;
+  top: 160px; left: -28%;
 }
 
 img {
-  margin-left: 500px;
+  margin-top: 10px;
+  height: 340px;
+  width: 450px;
+  margin-left: 300px;
   position: relative;
   top: -100px; left: 0%;
 
