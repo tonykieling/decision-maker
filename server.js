@@ -61,6 +61,14 @@ app.get("/", (req, res) => {
   res.render("welcome");
 });
 
+app.get("/welcome", (req, res) => {
+  res.render("welcome");
+});
+
+app.get("/thank_you", (req, res) => {
+  res.render("thank_you");
+});
+
 // https://gist.github.com/laurenfazah/f9343ae8577999d301334fc68179b485
 // check admin and password (simple away)
 function checkAdmin(user, password) {
@@ -127,26 +135,18 @@ app.post("/register", (req, res) => {
 
 // create_poll page
 app.get("/create_poll", (req, res) => {
-  console.log("req.session.admin_id: ", req.session.admin_id);
   if (!req.session.admin_id) {
     res.render("login");
     return;
   }
-  console.log("create_pol GET");
   res.render("create_poll");
 });
 
 app.post("/create_poll", (req, res) => {
-  // console.log("req.session.admin_id: ", req.session.admin_id);
   if (!req.session.admin_id) {
     res.render("login");
     return;
   }
-
-  console.log("req.body: ", req.body);
-  // let temp = req.body;
-  // let countOfOptions = 0;
-
 
   recordPoll(req.body, req.session.admin_id)
     .then((poll_id) => {
@@ -190,6 +190,15 @@ function recordPoll(data, admin_id) {
 }
 
 
+// admin page
+app.get("/admin", (req, res) => {
+  console.log("req.session.admin_id: ", req.session.admin_id);
+  if (!req.session.admin_id) {
+    res.render("login");
+    return;
+  }
+
+
 
 
 
@@ -199,7 +208,6 @@ app.get("/vote/:id", (req, res) => {
 
   retrievePolldata(poll_id)
   .then((poll_raw) => {
-    // console.log("poll_iD", poll_raw, "poll_id[0].question", poll_raw[0].question);
     const poll = { dataToVote :
       {
 
@@ -223,14 +231,11 @@ app.get("/vote/:id", (req, res) => {
             options.push(tempObj);
           }
         }
-        console.log("ALLLLLLLLLLL options: \n", options);
         poll.dataToVote.options = options;
-        console.log("poll cleaned: ", poll);
         res.render("vote", poll);
       });
   })
   .catch((err) => {
-    console.log("err: ", err);
     res.sendStatus(400);
   })
 
@@ -255,26 +260,37 @@ function retrieveOptionData(poll_id) {
 }
 
 app.post("/vote", (req, res) => {
-  console.log("route to POST VOTE");
-  // console.log("req.body.voteArray:: ", req.body.voteArray);
-  console.log("req.body: ", req.body);
   const vote = req.body.votes;
-  console.log("vote: ", vote);
-
   const MAX = vote.length;
-  console.log("MAX: ", MAX);
 
   for (let i = 0; i < MAX; i += 1){
     recordVote(vote[i], MAX - i);
   }
-  // res.render("welcome");
+  res.send("/thank_you");
 });
 
 
 
+
+// function recordVote(data) {
+//   const MAX = data.length;
+//   console.log("MAX: ", MAX);
+
+//   for (let i = 0; i < data.length; i += 1) {
+//     console.log(data[i]);
+//     // knex('vote')
+//     //   .insert(
+//     //     { option_id: data.option_id,
+//     //       score: data.score
+//     //     }
+//     //   ).then(() => {
+//     //     console.log("recorded");
+//     //   });
+//   }
+// }
+
 // record vote in the database
 function recordVote(option_id, score) {
-  console.log("option_id: ", option_id, "score: ", score);
   return knex('vote')
     .insert(
       { option_id,
