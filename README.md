@@ -2,6 +2,7 @@
 
 Delphi is a full stack web application built with Node and Express which allows users (admins) create poll to be voted for a list of people, which will decide the admin to make a decision about a specifc topic.
 It uses ranking points, ........
+When an admin creates a poll, it sends email for a list of people..
 
 
 ## Final Product
@@ -51,7 +52,12 @@ PICTURE
 
 
 ## Getting started
-- All dependencies will be installed using the command `npm install` .
+- `git clone git@github.com:tonykieling/decision-maker.git delphi`
+- All dependencies will be installed using the command `npm install`
+- Run migrations: `npm run knex migrate:latest`
+- Run the seed: `npm run knex seed:run`
+  - It will set an admin user: first@user.com password: 123456
+  - Just use it to create polls and browser inside the Delphi App.
 - Run the server: `npm run local`
 - Visit `http://localhost:8080/`
 
@@ -59,4 +65,4 @@ PICTURE
 ## Improvements
 - Add options and emails, create poll task, dynamically
 - Allow the admin set time to poll expiration
-
+- Send email to the admin when a voter votes
