@@ -10,11 +10,9 @@
     <h2 class="title">Polls: </h2>
 
     <ul id="vote_sort">
+
         <% for (let i in results) { %>
-<%=console.log("results: ", results[i].id);%>
-<%}%>
-        <% for (let i in results) { %>
-          <li class="ranked_item"> <a href="http://localhost:8080/result">Poll - <%=results[i].id%></a> </li>
+          <li class="ranked_item"> <a href="http://localhost:8080/result/<%=results[i].id%>">Poll-<%=results[i].id%> - <%=results[i].question%></a> </li>
         <% }%>
       </ul>
 

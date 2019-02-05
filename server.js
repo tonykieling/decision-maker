@@ -82,9 +82,6 @@ function checkAdmin(user, password) {
 
 
 
-
-
-
 // login page
 app.get("/login", (req, res) => {
   console.log ("### server.js - GET'/LOGIN'");
@@ -108,9 +105,10 @@ app.post("/login", (req, res) => {
 });
 
 
+
+
 // admin page
 app.get("/admin", (req, res) => {
-  console.log("req.session.admin_id: ", req.session.admin_id);
   if (!req.session.admin_id) {
     res.render("login");
     return;
@@ -120,15 +118,15 @@ app.get("/admin", (req, res) => {
 });
 
 
+
+
 // register page
 app.get("/register", (req, res) => {
-  console.log ("### server.js - app.get'/REGISTER'");
   res.render("register");
 });
 
 app.post("/register", (req, res) => {
-  console.log ("### server.js - app.get'/LOGIN'");
-  console.log("req.body.email: ", req.body.email, " req.body.password: ", req.body.password);
+  //it's not implemented. For now, it should be directly by the DB
   res.render("register");
 });
 
@@ -149,23 +147,26 @@ app.post("/create_poll", (req, res) => {
   }
 
   recordPoll(req.body, req.session.admin_id)
-    .then((poll_id) => {
+    // .then((poll_id, question) => {
+    .then((data) => {
       let promiseArray = req.body.option;
 
-      // send email thing
-      let emailArray = req.body.email;
+      // send email to the voters
+      const emailArray = req.body.email;
       emailArray.map((email) => {
-        sendURL(email, poll_id[0]);
+        sendURL(email, data[0].id, data[0].question);
       });
 
 
       // console.log("promiseArray:  ", promiseArray, "pollid", poll_id);
       return Promise.all(promiseArray.map((option) => {
-        // console.log("option: ", option);
-        return knex('option').insert({
-          label: option,
-          poll_id: poll_id[0]
-        })
+        if (option) {
+          return knex('option')
+            .insert({
+              label: option,
+              poll_id: data[0].id
+             })
+        }
       }))
     })
     .then(() => {
@@ -180,14 +181,15 @@ app.post("/create_poll", (req, res) => {
 
 // record poll in the database
 function recordPoll(data, admin_id) {
-  console.log("data: ", data, "admin_id: ", admin_id);
-  return knex('poll').returning('id')
+  return knex('poll').returning('*')
     .insert(
       {question: data.title,
       description: data.description,
       admin_id: admin_id}
     );
 }
+
+
 
 
 // admin page
@@ -198,19 +200,20 @@ app.get("/results", (req, res) => {
     return;
   }
 
-    getPolls(req.session.admin_id)
-      .then((results) => {
-        res.render("results", { results });
-      });
+  getPolls(req.session.admin_id)
+    .then((results) => {
+      res.render("results", { results });
+    });
 
 });
 
-
 function getPolls(admin_id){
-  return knex.select('id')
+  return knex.select('*')
     .from('poll')
     .where('admin_id', admin_id);
 }
+
+
 
 
 // vote page
@@ -259,6 +262,7 @@ function retrievePolldata(poll_id){
     .where('id', poll_id);
 }
 
+
 function retrieveOptionData(poll_id) {
   let tempArray = [];
   return knex.from('option').select('*').where('poll_id', poll_id)
@@ -281,7 +285,6 @@ app.post("/vote", (req, res) => {
 });
 
 
-
 // record vote in the database
 function recordVote(option_id, score) {
   return knex('vote')
@@ -299,37 +302,89 @@ function recordVote(option_id, score) {
 
 
 
+
+
 app.get("/result", (req, res) => {
   res.render("result");
 });
 
 // admin page
 // todo
-// app.get("/result/:id", (req, res) => {
-//   if (!req.session.admin_id) {
-//     res.render("login");
-//     return;
-//   }
-//   const poll_id = req.params.id;
-//   console.log("poll_id: ", poll_id);
-//     getVotes(poll_id)
-//       .then((results) => {
-//         console.log("results:: ", results);
+app.get("/result/:id", (req, res) => {
+  if (!req.session.admin_id) {
+    res.render("login");
+    return;
+  }
+  const poll_id = req.params.id;
 
-//         let scores = {};
-//         for (let i in results) {
+  let allScores = {};
+  retrieveOptionData(poll_id)
+      .then((options) => {
+        console.log("options-poll_id: ", options[0].poll_id);
+        return Promise.all(options.map((option) => {
+          return getVotes(option.id)
+            .then((scores) => {
 
-//         }
+              let eachScore = 0;
+              scores.forEach((eachOne) => {
+                eachScore += eachOne.score;
+              });
+              const vote_id = scores[0].option_id;
 
-//         // res.render("result", { results });
-//       });
-// });
+              return retrievePolldata(options[0].poll_id)
+              .then((poll_raw) => {
+                allScores[vote_id] = {
+                  score: eachScore,
+                  label: option.label,
+                  question: poll_raw[0].question
+                };
+                // const poll = {question: poll_raw[0].question};
+                // console.log("poll.question: ", poll_raw[0].question);
+                // return(poll_raw[0].question);
+              })
+              // .then((poll) => {
+              //   console.log("poll: ", question);
+              //   allScores[vote_id] = {
+              //     score: eachScore,
+              //     label: option.label,
+              //     question: poll
+              //   };
 
-// function getVotes(poll_id){
-//   return knex.select('id')
-//     .from('option')
-//     .where('poll_id', poll_id);
-// }
+              // })
+
+
+            });
+        }))
+        .then(() => {
+          console.log("11allScores: ", allScores);
+          res.render("result", {allScores});
+        })
+
+      })
+      // .then(() => {
+      //   console.log("33allscores: ", allScores);
+      // })
+
+
+
+  //   getVotes(poll_id)
+  //     .then((results) => {
+  //       console.log("results:: ", results);
+
+  //       let scores = {};
+  //       for (let i in results) {
+
+  //       }
+
+  //       // res.render("result", { results });
+  //     });
+});
+
+function getVotes(option_id){
+  return knex.select('*')
+    .from('vote')
+    .where('option_id', option_id);
+}
 
 
 
@@ -347,12 +402,12 @@ app.post("/logout", (req, res) => {
 
 
 
-function sendURL(email, id) {
+function sendURL(email, id, question) {
   const data = {
     from: 'Excited User <matt.r.kelly27@gmail.com>',
     to: email,  //add email list
     subject: `New Poll ${id}`,
-    text: `Please, take this poll: http://localhost:8080/vote/${id}`  //add link to poll page
+    text: `Please, take this poll: http://localhost:8080/vote/${id} related to\n ${question}`  //add link to poll page
   };
 
   mailgun.messages().send(data, (error, body) => {
