@@ -9,9 +9,11 @@ When an admin creates a poll, it sends email for a list of people..
 
 * **Welcome Page**
 
-<img src="docs/delphi-welcome_page.png" width="450" height="300"/>
+<img src="docs/delphi-welcome_page.png" width="500" height="300"/>
 
 <!-- * **Admin's Page** -->
+* **Login Page**
+<img src="docs/delphi-login.png" width="500" height="300"/>
 
 * **Creating Polls**
 
@@ -22,9 +24,11 @@ When an admin creates a poll, it sends email for a list of people..
 
 * **Result Page**
 
-<img src="docs/delphi-results.png" width="550" height="300"/>
+<img src="docs/delphi-results.png" width="600" height="300"/>
 
+* **Thank You Page**
 
+<img src="docs/delphi-thank_you.png" width="500" height="300"/>
 
 ## Dependencies
 * body-parser
