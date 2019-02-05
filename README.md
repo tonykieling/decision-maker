@@ -15,14 +15,14 @@ When an admin creates a poll, it sends email for a list of people..
 
 * **Creating Polls**
 
-<img src="docs/delphi-create_poll.png" width="450" height="300"/>
+<img src="docs/delphi-create_poll.png" width="600" height="300"/>
 <!-- * **Vote's Page** -->
 
 <!-- <img src="docs/urls.png" width="450" height="300"/> -->
 
 * **Result Page**
 
-<img src="docs/delphi-results.png" width="450" height="300"/>
+<img src="docs/delphi-results.png" width="550" height="300"/>
 
 
 
