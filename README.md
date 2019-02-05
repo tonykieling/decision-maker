@@ -7,29 +7,26 @@ When an admin creates a poll, it sends email for a list of people..
 
 ## Final Product
 
-* **Main Page** 
+* **Welcome Page**
 
-INSERT PICTURE USING THE SYNTAX BELLOW
-<img src="docs/urls.png" width="450" height="300"/>
+<img src="docs/delphi-welcome_page.png" width="450" height="300"/>
 
-* **Admin's Page**
-
-INSERT PICTURE
-
+<!-- * **Admin's Page** -->
 
 * **Creating Polls**
 
-PICTURE
+<img src="docs/delphi-create-poll.png" width="450" height="300"/>
 
 
-* **Vote's Page**
+<!-- * **Vote's Page** -->
 
-PICTURE
+<!-- <img src="docs/urls.png" width="450" height="300"/> -->
 
 
 * **Result Page**
 
-PICTURE
+<img src="docs/delphi-results.png" width="450" height="300"/>
+
 
 
 ## Dependencies
