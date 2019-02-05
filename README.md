@@ -52,12 +52,8 @@ PICTURE
 
 ## Getting started
 - All dependencies will be installed using the command `npm install` - it also runs the Application.
-- Another way to run is by the command `node express_server.js`.
-
-
-3. Install dependencies: `npm i`
-7. Run the server: `npm run local`
-8. Visit `http://localhost:8080/`
+- Run the server: `npm run local`
+- Visit `http://localhost:8080/`
 
 
 ## Improvements
