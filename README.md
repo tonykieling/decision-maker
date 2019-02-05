@@ -1,29 +1,66 @@
-# Node Skeleton
+# Delphi App
 
-## Project Setup
+Delphi is a full stack web application built with Node and Express which allows users (admins) create poll to be voted for a list of people, which will decide the admin to make a decision about a specifc topic.
+It uses ranking points, ........
 
-1. Create your own empty repo on GitHub
-2. Clone this repository (do not fork)
-  - Suggestion: When cloning, specify a different folder name that is relevant to your project
-3. Remove the git remote: `git remote rm origin`
-4. Add a remote for your origin: `git remote add origin <your github repo URL>`
-5. Push to the new origin: `git push -u origin master`
-6. Verify that the skeleton code now shows up in your repo on GitHub
 
-## Getting Started
+## Final Product
 
-1. Create the `.env` by using `.env.example` as a reference: `cp .env.example .env`
-2. Update the .env file with your correct local information
+* **Main Page** 
+
+INSERT PICTURE USING THE SYNTAX BELLOW
+<img src="docs/urls.png" width="450" height="300"/>
+
+* **Admin's Page**
+
+INSERT PICTURE
+
+
+* **Creating Polls**
+
+PICTURE
+
+
+* **Vote's Page**
+
+PICTURE
+
+
+* **Result Page**
+
+PICTURE
+
+
+## Dependencies
+* body-parser
+* cookie-session
+* cookie-parser
+* ejs
+* express
+* "dotenv": "^2.0.0",
+* "install": "^0.12.2",
+* knex
+* knex-logger
+* knex-migrate
+* mailgun-js
+* morgan
+* node-sass-middleware
+* pg
+
+** It is necessary to have a PostgreSQL database and a user to the MailGun running.
+
+
+## Getting started
+- All dependencies will be installed using the command `npm install` - it also runs the Application.
+- Another way to run is by the command `node express_server.js`.
+
+
 3. Install dependencies: `npm i`
-4. Fix to binaries for sass: `npm rebuild node-sass`
-5. Run migrations: `npm run knex migrate:latest`
-  - Check the migrations folder to see what gets created in the DB
-6. Run the seed: `npm run knex seed:run`
-  - Check the seeds file to see what gets seeded in the DB
 7. Run the server: `npm run local`
 8. Visit `http://localhost:8080/`
 
-## Dependencies
 
-- Node 5.10.x or above
-- NPM 3.8.x or above
+## Improvements
+- Add options and emails, create poll task, dynamically
+- Allow the admin set time to poll expiration
+
