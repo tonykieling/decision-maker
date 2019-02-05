@@ -51,7 +51,7 @@ PICTURE
 
 
 ## Getting started
-- All dependencies will be installed using the command `npm install` - it also runs the Application.
+- All dependencies will be installed using the command `npm install` .
 - Run the server: `npm run local`
 - Visit `http://localhost:8080/`
 
