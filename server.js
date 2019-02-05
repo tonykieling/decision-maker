@@ -300,10 +300,6 @@ function recordVote(option_id, score) {
 
 
 
-
-
-
-
 app.get("/result", (req, res) => {
   res.render("result");
 });
@@ -317,10 +313,9 @@ app.get("/result/:id", (req, res) => {
   }
   const poll_id = req.params.id;
 
-  let allScores = {};
+  let allScores = [];
   retrieveOptionData(poll_id)
       .then((options) => {
-        console.log("options-poll_id: ", options[0].poll_id);
         return Promise.all(options.map((option) => {
           return getVotes(option.id)
             .then((scores) => {
@@ -333,51 +328,31 @@ app.get("/result/:id", (req, res) => {
 
               return retrievePolldata(options[0].poll_id)
               .then((poll_raw) => {
-                allScores[vote_id] = {
+                let temp = {
                   score: eachScore,
                   label: option.label,
                   question: poll_raw[0].question
                 };
-                // const poll = {question: poll_raw[0].question};
-                // console.log("poll.question: ", poll_raw[0].question);
-                // return(poll_raw[0].question);
+                allScores.push(temp);
               })
-              // .then((poll) => {
-              //   console.log("poll: ", question);
-              //   allScores[vote_id] = {
-              //     score: eachScore,
-              //     label: option.label,
-              //     question: poll
-              //   };
-
-              // })
-
-
             });
         }))
         .then(() => {
-          console.log("11allScores: ", allScores);
+          allScores.sort((f, s) => {
+            const a = f.score;
+            const b = s.score;
+            let compare = 0;
+            if (a > b) {
+              return -1;
+            } else if (a < b) {
+              return 1;
+            }
+            return compare;
+          })
           res.render("result", {allScores});
         })
 
       })
-      // .then(() => {
-      //   console.log("33allscores: ", allScores);
-      // })
-
-
-
-  //   getVotes(poll_id)
-  //     .then((results) => {
-  //       console.log("results:: ", results);
-
-  //       let scores = {};
-  //       for (let i in results) {
-
-  //       }
-
-  //       // res.render("result", { results });
-  //     });
 });
 
 function getVotes(option_id){
@@ -385,11 +360,6 @@ function getVotes(option_id){
     .from('vote')
     .where('option_id', option_id);
 }
-
-
-
-
-
 
 
 
