@@ -320,6 +320,12 @@ app.get("/result/:id", (req, res) => {
           return getVotes(option.id)
             .then((scores) => {
 
+              // console.log("scores: ", scores);
+              // if (!scores.length) {
+              //   return 0;
+              // }
+              // not working for scores zero
+
               let eachScore = 0;
               scores.forEach((eachOne) => {
                 eachScore += eachOne.score;
@@ -335,7 +341,7 @@ app.get("/result/:id", (req, res) => {
                 };
                 allScores.push(temp);
               })
-            });
+            })
         }))
         .then(() => {
           allScores.sort((f, s) => {

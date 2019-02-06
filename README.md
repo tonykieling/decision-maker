@@ -1,7 +1,7 @@
 # Delphi App
 
 Delphi is a full stack web application built with Node and Express which allows users (admins) create poll to be voted for a list of people, which will decide the admin to make a decision about a specifc topic.
-It uses ranking points, ........
+It uses Borda Count method to ranking points to define the winner.
 When an admin creates a poll, it sends email for a list of people..
 
 
@@ -66,3 +66,5 @@ PICTURE
 - Add options and emails, create poll task, dynamically
 - Allow the admin set time to poll expiration
 - Send email to the admin when a voter votes
+- Need some refactor to routes and its functions
+- Deal with polls without votes

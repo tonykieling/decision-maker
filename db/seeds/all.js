@@ -16,9 +16,21 @@ exports.seed = function(knex, Promise) {
   .then((ids) => {
     return knex('poll').insert([
       { question: 'Movie to watch?', admin_id: id(ids)},
-      { question: 'Restaurant to go?', admin_id: id(ids)},
-      { question: 'What about a trip?', admin_id: id(ids)},
+      { question: 'Food?', admin_id: id(ids)},
       { question: 'Hiking where?', admin_id: id(ids)},
     ]).returning('id');
   })
+  // .then((ids) => {
+  //   return knex('option').insert([
+  //     {label: 'Labamba', poll_id: id(ids)},
+  //     {label: 'Indiana Jones', poll_id: id(ids)},
+  //     {label: 'Rock I', poll_id: id(ids)},
+  //     {label: 'Back to the Future I', poll_id: id(ids)},
+  //     {label: 'Conan the Barbarian ', poll_id: id(ids)},
+  //   ]).returning('id')
+  // })
+  // // TODO: insert options and votes
+  // https://medium.com/@emilygao/basic-guide-for-knex-js-c9ead1df0574
+  // https://devhints.io/knex#insert-1
+  // http://zetcode.com/javascript/knex/
 };

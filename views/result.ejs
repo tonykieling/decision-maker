@@ -9,19 +9,23 @@
     <div class="main">
     <h2 class="title">Results </h2>
     <h3>Poll:</h3>
-    <h3><%=allScores[0].question %></h3>
+    <% if (allScores) { %>
+      <h3><%=allScores[0].question %></h3>
 
-    <% if (allScores[0].score === allScores[1].score) { %>
-      <h1>Tie Result!!</h1>
+      <% if (allScores[0].score === allScores[1].score) { %>
+        <h1>Tie Result!!</h1>
+      <% } else { %>
+        <% console.log("NOT tie!") %>
+        <h1>Winner is:</h1>
+        <h1><%=allScores[0].label %></h1>
+      <% } %>
+
+      <%for (let i of allScores) { %>
+        <h3> <%=i.label%> - <%=i.score%></h3>
+      <%}%>
     <% } else { %>
-      <% console.log("NOT tie!") %>
-      <h1>Winner is:</h1>
-      <h1><%=allScores[0].label %></h1>
+      <h2> NO vote for this poll right now</h2>
     <% } %>
-
-    <%for (let i of allScores) { %>
-      <h3> <%=i.label%> - <%=i.score%></h3>
-    <%}%>
     <form action="/admin" method="GET">
       <button class="admin"> back to admin page</button>
     </form>
